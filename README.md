@@ -1,23 +1,23 @@
-# 💳 Bank Churn Analysis – SQL Project
+# Bank Churn Analysis – SQL Project
 
 **Author:** Shubham Naik  
 **Tools Used:** SQL (MySQL), Visual Studio  
 
 ---
 
-## 📘 Introduction
+## Introduction
 
 This SQL-based project analyzes churned bank customers using demographic and financial data. The purpose is to identify key trends, behavioral patterns, and risk segments associated with customer churn. Insights derived from this project help inform customer retention strategies and product improvements.
 
 ---
 
-## 🎯 Objective
+## Objective
 
 The goal is to build a comprehensive SQL-driven backend to explore **why customers leave** the bank. Through a series of structured queries, the analysis uncovers churn trends across age, income, card usage, tenure, and demographic factors.
 
 ---
 
-## 📄 Dataset Overview
+##  Dataset Overview
 
 The dataset `bank_churn_data.csv` includes **1,627 records** representing **only churned customers**.  
 
@@ -38,8 +38,15 @@ The dataset `bank_churn_data.csv` includes **1,627 records** representing **only
 | churn               | Indicates if the client churned (all = Yes)      |
 
 ---
+##  Core Questions Answered
+1. What are the average financial metrics (e.g., credit limit, utilization ratio, age)?
+2. Which card categories and income groups churn the most?
+3. How long do customers typically stay before churning?
+4. Which demographic groups (gender, age, marital status) have higher churn?
+5. How does credit utilization differ among churned clients?
+--- 
 
-## 🧮 SQL Queries and Analysis
+##  SQL Queries and Analysis
 
 ### 1. Total Customers, Age, Credit & Utilization
 ```sql
@@ -51,16 +58,13 @@ SELECT
 FROM bank_churn_data;
 ```
 
-Key Results:
 ![image](https://github.com/user-attachments/assets/2c3b891a-bfb0-47bc-8868-08ff4da0afa8)
 
-Total Customers: 1,627
-
-Average Age: 47 years
-
-Average Credit Limit: $8,136.04
-
-Average Utilization Ratio: 16.0%
+Key Insight:
+- Total Customers: 1,627
+- Average Age: 47 years
+- Average Credit Limit: $8,136.04
+- Average Utilization Ratio: 16.0%
 
 ### 2. Average Balance and Credit by Income Group
 ```sql
@@ -73,13 +77,9 @@ FROM bank_churn_data
 GROUP BY income
 ORDER BY avg_balance DESC;
 ```
-**Explanation:**
-This query compares average balances and credit access across income levels.
 ![image](https://github.com/user-attachments/assets/29841096-06c3-48c2-8a2e-b571b5702780)
 
-
-**Insight:**
-Customers earning $80K–$120K have higher balances and access to more credit. However, even lower-income groups hold significant credit limits, suggesting broad access.
+Key Insight: Customers earning $80K–$120K have higher balances and access to more credit. However, even lower-income groups hold significant credit limits, suggesting broad access.
 
 ### 3. Utilization Distribution Categories
 ``` SQL 
@@ -98,14 +98,10 @@ GROUP BY
         ELSE 'High (50%+)' 
     END;
 ```
-Explanation:
-This bins customers into credit utilization brackets.
 
 ![image](https://github.com/user-attachments/assets/5e055cf8-712a-4cc7-9cf2-fc0de4be716a)
 
-Key Insight:
-
-58.5% of churned customers had low credit utilization (0–20%), indicating churn may be driven by lack of engagement, not debt pressure.
+Key Insight: 58.5% of churned customers had low credit utilization (0–20%), indicating churn may be driven by lack of engagement, not debt pressure.
 
 ### 4. Top 10 Customers by Utilization
 ```SQL 
@@ -119,8 +115,6 @@ FROM bank_churn_data
 ORDER BY utilization_ratio DESC
 LIMIT 10;
 ```
-Explanation:
-Identifies the highest users of credit—these customers may have left due to credit dependency stress.
 ![image](https://github.com/user-attachments/assets/ec88f387-b0a8-44aa-a136-590293f51d4b)
 
 ### 5. Gender-Based Financial Behavior
@@ -152,10 +146,12 @@ FROM bank_churn_data
 GROUP BY card_category 
 ORDER BY number_of_customers DESC;
 ``` 
-Key Insight:
--Blue cardholders: 93% of churned clients
--Suggests the basic credit card tier is underperforming in terms of retention.
+
 ![image](https://github.com/user-attachments/assets/77e114c6-5744-41d1-881e-4bc44b304e5a)
+
+Key Insight:
+- Blue cardholders: 93% of churned clients
+- Suggests the basic credit card tier is underperforming in terms of retention.
 
 ### 7. Average Balance by Income Group
 ```sql
@@ -167,10 +163,10 @@ FROM bank_churn_data
 GROUP BY income 
 ORDER BY average_balance DESC;
 ```
+
 ![image](https://github.com/user-attachments/assets/d79ad1b5-f659-4b00-b8f5-45618b53a8ca)
 
-Insight:
-Higher income = higher average balance, as expected. However, mid-tier income groups churn rapidly.
+Key Insight: Higher income = higher average balance, as expected. However, mid-tier income groups churn rapidly.
 
 ### 8. Marital Status Distribution
 ```sql
@@ -182,10 +178,12 @@ GROUP BY marital_status
 ORDER BY number_of_customers DESC;
 
 ```
-Key Insight:
--Married customers: 43.6% of all churned users.
--Programs should address relationship-based financial needs and family planning stages.
 ![image](https://github.com/user-attachments/assets/d0c48135-fea0-45a8-a72a-88d45e4f4924)
+
+Key Insight: 
+- Married customers: 43.6% of all churned users.
+- Programs should address relationship-based financial needs and family planning stages.
+
 
 ### 9. Customer Tenure (Months on Book)
 ```sql
@@ -196,13 +194,14 @@ FROM bank_churn_data
 GROUP BY months_on_book 
 ORDER BY months_on_book DESC;
 ``` 
-Insight:
+
 ![image](https://github.com/user-attachments/assets/078b3fc9-508c-4195-924b-a9ccb608f722)
 
--Most customers churn between 35 and 50 months of tenure.
--Indicates a critical drop-off point after ~3 years.
+Key Insight:
+- Most customers churn between 35 and 50 months of tenure.
+- Indicates a critical drop-off point after ~3 years.
 
-###10. Income Group with Shortest Tenure
+### 10. Income Group with Shortest Tenure
 ```sql
 SELECT 
     income, 
@@ -212,12 +211,11 @@ FROM bank_churn_data
 GROUP BY income 
 ORDER BY avg_tenure_before_churn ASC;
 ```
-Key Insight:
 ![image](https://github.com/user-attachments/assets/a53bcdb4-a23f-49e6-bfaf-8246e43ac7e5)
 
-$40K–$60K income group has the shortest average tenure at ~35.77 months
-
-These mid-income customers may need targeted value-based programs.
+Key Insight:
+- $40K–$60K income group has the shortest average tenure at ~35.77 months
+- These mid-income customers may need targeted value-based programs.
 
 ### 11.Age Group Segmentation
 ``` sql 
@@ -238,6 +236,10 @@ FROM (
 GROUP BY age_group
 ORDER BY number_of_customers DESC;
 ```
+
+![image](https://github.com/user-attachments/assets/276afe5b-730e-4421-bdee-25df7b5e7280)
+
+Insight: 
 | Age Group | % of Churned Customers |
 |-----------|------------------------|
 | 46–55     | 28.6%                  |
@@ -246,10 +248,7 @@ ORDER BY number_of_customers DESC;
 | 56+       | 18.1%                  |
 | 18–25     | 8.8%                   |
 
-Insight:
-![image](https://github.com/user-attachments/assets/276afe5b-730e-4421-bdee-25df7b5e7280)
-
-Middle-aged customers (36–55) are at highest risk of churn. These groups should be prioritized for retention and product redesign.
+- Middle-aged customers (36–55) are at highest risk of churn. These groups should be prioritized for retention and product redesign.
 
 ---
 
@@ -307,7 +306,3 @@ This SQL-based analysis provides actionable insights into customer churn behavio
 - **Monitor low utilization** as an early signal for churn risk  
 - **Strengthen onboarding** and first-year experiences
 
-##  Conclusion  
--This SQL-based analysis provides actionable insights into customer churn behavior.  
--It helps banks understand churn drivers and take preventive measures by leveraging credit usage, demographics, and account data.  
--**Future enhancements** may include predictive models for churn forecasting and integration with CRM systems for automated retention strategies. 
