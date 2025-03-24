@@ -252,7 +252,7 @@ Insight:
 
 ---
 
-## 📌 Key Insights Summary
+##  Key Insights Summary
 
 | Insight Area           | Findings                                                  |
 |------------------------|-----------------------------------------------------------|
@@ -266,38 +266,38 @@ Insight:
 
 ---
 
-### ✅ Key Metrics
+###  Key Metrics
 
 - **Total Churned Clients:** 1,627  
 - **Average Age:** 47 years  
 - **Average Credit Limit:** $8,136.04  
 - **Average Utilization Ratio:** 16.0%
 
-### 📊 Financial Behavior
+###  Financial Behavior
 
 - **58.5%** of customers used **less than 20%** of their credit (Low Utilization)
 - Churn isn't always due to financial stress—**inactivity may be the cause**
 - Higher-income clients tend to have larger balances and credit limits
 
-### 💳 Card Category Insights
+###  Card Category Insights
 
 - **Blue Card** holders account for **93% of churned customers**
 - Premium cardholders (Silver, Gold, Platinum) also churned—indicating benefit gaps
 
-### 👥 Demographics
+###  Demographics
 
 - **57.2%** of churned users were **female**
 - **43.6%** were **married**
 - Most churned clients fall into the **46–55 age group**
 
-### ⌛ Tenure Analysis
+### Tenure Analysis
 
 - Churn peaks between **35–50 months** of customer relationship
 - Clients with **$40K–$60K** income had the **shortest tenure** (~35.77 months)
 This SQL-based analysis provides actionable insights into customer churn behavior.
 ---
 
-## ✅ Recommendations
+##  Recommendations
 
 - **Improve Blue card benefits** to increase engagement  
 - **Introduce re-engagement campaigns** before the 36-month mark  
